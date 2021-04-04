@@ -36,6 +36,11 @@ const transaction = {
     app.reload();
   },
 
+  remove(index) {
+    transaction.allTransaction.splice(index, 1); //pegar o elemento e remove, o segundo parametro do splice é a quantidade.
+    app.reload();
+  },
+
   incomes() {
     //somar entradas
     let income = 0;
