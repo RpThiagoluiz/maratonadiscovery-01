@@ -139,8 +139,10 @@ const DOM = {
 const utils = {
   formatAmount(value) {
     //tirar e substituir caracteres que vierem do form.
-    value = Number(value) * 100; //usar a regex se precisar. value = Number(value.replace(/\,\./g, "")) * 100
-    return value;
+    //usar a regex se precisar. value = Number(value.replace(/\,?\.?/g, "")) * 100
+    //input ja vem do tipo number, por causa do seu type
+    value = value * 100;
+    return Math.round(value);
   },
 
   formatDate(date) {
@@ -242,8 +244,8 @@ const app = {
     });
 
     // transaction.allTransaction.forEach(DOM.addTransaction);
-    storage.set(transaction.allTransaction);
     DOM.updateBalance(); // responsavel por inserir os dados trabalhados no js para o html
+    storage.set(transaction.allTransaction);
   },
   reload() {
     DOM.clearTransactions();
